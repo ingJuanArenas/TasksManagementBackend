@@ -1,22 +1,38 @@
 package com.tasks.management.tasks_management.mapper;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import com.tasks.management.tasks_management.model.dto.request.UserRequest;
 import com.tasks.management.tasks_management.model.dto.response.UserResponse;
 import com.tasks.management.tasks_management.model.vo.User;
+import com.tasks.management.tasks_management.model.vo.Role;
 
-@Mapper(componentModel = "spring")
-public interface UserMapper {
+@Component
+public class UserMapper {
     
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+    public User userRequestToUser(UserRequest userRequest) {
+        if (userRequest == null) {
+            return null;
+        }
+        
+        User user = new User();
+        user.setUsername(userRequest.getUsername());
+        user.setPassword(userRequest.getPassword());
+        user.setRole(userRequest.getRole() != null ? userRequest.getRole() : Role.USER);
+        
+        return user;
+    }
     
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "tasksTList", ignore = true)
-    @Mapping(target = "role", constant = "USER")
-    User userRequestToUser(UserRequest userRequest);
-    
-    UserResponse userToUserResponse(User user);
+    public UserResponse userToUserResponse(User user) {
+        if (user == null) {
+            return null;
+        }
+        
+        UserResponse response = new UserResponse();
+        response.setId(user.getId());
+        response.setUsername(user.getUsername());
+        response.setRole(user.getRole());
+        
+        return response;
+    }
 } 
