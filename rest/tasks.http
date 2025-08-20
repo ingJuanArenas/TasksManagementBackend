@@ -1,0 +1,181 @@
+### REST Client para TaskController
+### Base URL: http://localhost:8080
+
+### ========================================
+### 1. CREAR TAREA (POST)
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "Desarrollar API REST",
+    "description": "Crear una API REST completa con Spring Boot para gestión de tareas",
+    "deadline": "2024-12-31"
+}
+
+### ========================================
+### 2. CREAR OTRA TAREA (POST)
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "Implementar autenticación",
+    "description": "Agregar sistema de autenticación JWT a la aplicación",
+    "deadline": "2024-11-15"
+}
+
+### ========================================
+### 3. CREAR TAREA URGENTE (POST)
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "Corregir bugs críticos",
+    "description": "Identificar y corregir errores críticos en el sistema",
+    "deadline": "2024-10-20"
+}
+
+### ========================================
+### 4. OBTENER TODAS LAS TAREAS (GET)
+### ========================================
+GET http://localhost:8080/api/tasks
+
+### ========================================
+### 5. OBTENER TAREA POR ID (GET)
+### ========================================
+GET http://localhost:8080/api/tasks/1
+
+### ========================================
+### 6. OBTENER TAREA QUE NO EXISTE (GET)
+### ========================================
+GET http://localhost:8080/api/tasks/999
+
+### ========================================
+### 7. ACTUALIZAR TAREA (PUT)
+### ========================================
+PUT http://localhost:8080/api/tasks/1
+Content-Type: application/json
+
+{
+    "name": "Desarrollar API REST - Actualizado",
+    "description": "Crear una API REST completa con Spring Boot para gestión de tareas - Versión mejorada",
+    "deadline": "2024-12-15"
+}
+
+### ========================================
+### 8. ACTUALIZAR TAREA QUE NO EXISTE (PUT)
+### ========================================
+PUT http://localhost:8080/api/tasks/999
+Content-Type: application/json
+
+{
+    "name": "Tarea inexistente",
+    "description": "Esta tarea no existe",
+    "deadline": "2024-12-31"
+}
+
+### ========================================
+### 9. OBTENER TAREAS POR STATUS (GET)
+### ========================================
+GET http://localhost:8080/api/tasks/status/PENDING
+
+### ========================================
+### 10. OBTENER TAREAS POR STATUS IN_COURSE (GET)
+### ========================================
+GET http://localhost:8080/api/tasks/status/IN_COURSE
+
+### ========================================
+### 11. OBTENER TAREAS POR STATUS COMPLETED (GET)
+### ========================================
+GET http://localhost:8080/api/tasks/status/COMPLETED
+
+### ========================================
+### 12. BUSCAR TAREAS POR NOMBRE (GET)
+### ========================================
+GET http://localhost:8080/api/tasks/search?name=API
+
+### ========================================
+### 13. BUSCAR TAREAS POR NOMBRE - SIN RESULTADOS (GET)
+### ========================================
+GET http://localhost:8080/api/tasks/search?name=inexistente
+
+### ========================================
+### 14. ELIMINAR TAREA (DELETE)
+### ========================================
+DELETE http://localhost:8080/api/tasks/2
+
+### ========================================
+### 15. ELIMINAR TAREA QUE NO EXISTE (DELETE)
+### ========================================
+DELETE http://localhost:8080/api/tasks/999
+
+### ========================================
+### 16. VALIDACIONES - NOMBRE VACÍO (POST)
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "",
+    "description": "Descripción válida",
+    "deadline": "2024-12-31"
+}
+
+### ========================================
+### 17. VALIDACIONES - DESCRIPCIÓN VACÍA (POST)
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "Tarea válida",
+    "description": "",
+    "deadline": "2024-12-31"
+}
+
+### ========================================
+### 18. VALIDACIONES - DEADLINE NULL (POST)
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "Tarea válida",
+    "description": "Descripción válida"
+}
+
+### ========================================
+### 19. VALIDACIONES - DEADLINE INVÁLIDA (POST)
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "Tarea válida",
+    "description": "Descripción válida",
+    "deadline": "fecha-invalida"
+}
+
+### ========================================
+### 20. VALIDACIONES - JSON INVÁLIDO (POST)
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "Tarea válida"
+    "description": "Descripción válida",
+    "deadline": "2024-12-31"
+}
+
+### ========================================
+### 21. ACTUALIZAR ESTADO A IN_COURSE (PUT)
+### ========================================
+PUT http://localhost:8080/api/tasks/1/status/IN_COURSE
+
+### ========================================
+### 22. ACTUALIZAR ESTADO A COMPLETED (PUT)
+### ========================================
+PUT http://localhost:8080/api/tasks/1/status/COMPLETED 

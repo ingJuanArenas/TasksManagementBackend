@@ -1,0 +1,40 @@
+### Pruebas Rápidas - Verificación de API
+### Este archivo contiene las pruebas más básicas para verificar que la API funciona
+
+### ========================================
+### 1. VERIFICAR QUE LA API ESTÁ FUNCIONANDO
+### ========================================
+GET http://localhost:8080/api/users
+
+### ========================================
+### 2. CREAR UN USUARIO DE PRUEBA
+### ========================================
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+    "username": "test_user",
+    "password": "test123"
+}
+
+### ========================================
+### 3. CREAR UNA TAREA DE PRUEBA
+### ========================================
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+    "name": "Tarea de prueba",
+    "description": "Esta es una tarea de prueba para verificar la API",
+    "deadline": "2024-12-31"
+}
+
+### ========================================
+### 4. OBTENER TODAS LAS TAREAS
+### ========================================
+GET http://localhost:8080/api/tasks
+
+### ========================================
+### 5. VERIFICAR TAREAS PENDIENTES
+### ========================================
+GET http://localhost:8080/api/tasks/status/PENDING 
