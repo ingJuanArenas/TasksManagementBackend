@@ -1,138 +1,15 @@
-### REST Client para UserController
-### Base URL: http://localhost:8080
-
-### ========================================
-### 1. CREAR USUARIO (POST)
-### ========================================
-POST http://localhost:8080/api/users
+### Crear usuario (ejemplo)
+POST http://localhost:8080/api/users/create?username=testuser&password=testpass&role=ROLE_USER
 Content-Type: application/json
 
-{
-    "username": "juan_perez",
-    "password": "password123"
-}
-
-### ========================================
-### 2. CREAR OTRO USUARIO (POST)
-### ========================================
-POST http://localhost:8080/api/users
+### Crear usuario admin
+POST http://localhost:8080/api/users/create?username=admin&password=adminpass&role=ROLE_ADMIN
 Content-Type: application/json
 
-{
-    "username": "maria_garcia",
-    "password": "securepass456"
-}
+### Probar login con usuario creado (acceder a endpoint protegido)
+GET http://localhost:8080/api/tasks
+Authorization: Basic dGVzdHVzZXI6dGVzdHBhc3M=
 
-### ========================================
-### 3. CREAR USUARIO ADMIN (POST)
-### ========================================
-POST http://localhost:8080/api/users
-Content-Type: application/json
-
-{
-    "username": "admin_user",
-    "password": "admin123",
-    "role": "ADMIN"
-}
-
-### ========================================
-### 4. OBTENER TODOS LOS USUARIOS (GET)
-### ========================================
-GET http://localhost:8080/api/users
-
-### ========================================
-### 5. OBTENER USUARIO POR ID (GET)
-### ========================================
-GET http://localhost:8080/api/users/1
-
-### ========================================
-### 6. OBTENER USUARIO QUE NO EXISTE (GET)
-### ========================================
-GET http://localhost:8080/api/users/999
-
-### ========================================
-### 7. ACTUALIZAR USUARIO (PUT)
-### ========================================
-PUT http://localhost:8080/api/users/1
-Content-Type: application/json
-
-{
-    "username": "juan_perez_updated",
-    "password": "newpassword123",
-    "role": "ADMIN"
-}
-
-### ========================================
-### 8. ACTUALIZAR USUARIO QUE NO EXISTE (PUT)
-### ========================================
-PUT http://localhost:8080/api/users/999
-Content-Type: application/json
-
-{
-    "username": "usuario_inexistente",
-    "password": "password123"
-}
-
-### ========================================
-### 9. CREAR USUARIO CON USERNAME DUPLICADO (POST) - Debe fallar
-### ========================================
-POST http://localhost:8080/api/users
-Content-Type: application/json
-
-{
-    "username": "juan_perez_updated",
-    "password": "password123"
-}
-
-### ========================================
-### 10. ELIMINAR USUARIO (DELETE)
-### ========================================
-DELETE http://localhost:8080/api/users/2
-
-### ========================================
-### 11. ELIMINAR USUARIO QUE NO EXISTE (DELETE)
-### ========================================
-DELETE http://localhost:8080/api/users/999
-
-### ========================================
-### 12. VALIDACIONES - USERNAME VACÍO (POST)
-### ========================================
-POST http://localhost:8080/api/users
-Content-Type: application/json
-
-{
-    "username": "",
-    "password": "password123"
-}
-
-### ========================================
-### 13. VALIDACIONES - PASSWORD MUY CORTO (POST)
-### ========================================
-POST http://localhost:8080/api/users
-Content-Type: application/json
-
-{
-    "username": "test_user",
-    "password": "123"
-}
-
-### ========================================
-### 14. VALIDACIONES - JSON INVÁLIDO (POST)
-### ========================================
-POST http://localhost:8080/api/users
-Content-Type: application/json
-
-{
-    "username": "test_user"
-    "password": "password123"
-}
-
-### ========================================
-### 15. LISTAR USUARIOS POR ROL: ADMIN
-### ========================================
-GET http://localhost:8080/api/users/role/ADMIN
-
-### ========================================
-### 16. LISTAR USUARIOS POR ROL: USER
-### ========================================
-GET http://localhost:8080/api/users/role/USER 
+### Probar login con admin (acceder a endpoint protegido)
+GET http://localhost:8080/api/tasks
+Authorization: Basic YWRtaW46YWRtaW5wYXNz
