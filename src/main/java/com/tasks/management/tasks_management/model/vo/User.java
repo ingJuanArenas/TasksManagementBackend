@@ -1,43 +1,40 @@
 package com.tasks.management.tasks_management.model.vo;
 
-import lombok.*;
+import java.util.Set;
 
-import java.util.List;
-
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import lombok.Data;
+
 
 @Entity
-@Table(name = "users")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-      
-    @OneToMany(mappedBy = "user")
-    private List<UserTasks> tasksTList;
-   
-
-    @NotBlank
-    @Size(max = 100)
+    @Column(unique = true, nullable = false)
     private String username;
 
-    @NotBlank
-    @Size(min = 6, max = 100)
-    private String password;
+    @Column(nullable = false)
+    private String password; // ¡Esta contraseña debe estar hasheada!
 
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.USER; // Default role
+    // Roles o Autoridades. Puedes usar un String para roles simples
+    // o una entidad separada para manejar roles más complejos (relación ManyToMany)
+    // Ejemplo simple con String para roles:
+    @ElementCollection(fetch = FetchType.EAGER) // Carga los roles inmediatamente
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<String> roles; // Ej. "ROLE_USER", "ROLE_ADMIN"
 }
