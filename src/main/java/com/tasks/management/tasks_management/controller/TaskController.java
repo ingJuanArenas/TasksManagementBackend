@@ -34,32 +34,34 @@ public class TaskController {
     private final TaskService taskService;
     
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskResponse> getAllTasks() {
         return taskService.getAllTasks();
     }
     
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public TaskResponse getTaskById(@PathVariable Long id) {
         return taskService.getTaskById(id);
     }
+
+    @GetMapping("/status/{status}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskResponse> getTasksByStatus(@PathVariable Status status) {
+        return taskService.getTasksByStatus(status);
+    }
     
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
+    @ResponseStatus(HttpStatus.CREATED)
     public TaskResponse createTask(@Valid @RequestBody TaskRequest taskRequest) {
         return taskService.createTask(taskRequest);
     }
     
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public TaskResponse updateTask(@PathVariable Long id, @Valid @RequestBody TaskRequest taskRequest) {
-        return taskService.updateTask(id, taskRequest);
-    }
-    
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -67,21 +69,19 @@ public class TaskController {
         taskService.deleteTask(id);
     }
     
-    @GetMapping("/status/{status}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<TaskResponse> getTasksByStatus(@PathVariable Status status) {
-        return taskService.getTasksByStatus(status);
-    }
-    
-    @GetMapping("/search")
-    @ResponseStatus(HttpStatus.OK)
-    public List<TaskResponse> getTasksByName(@RequestParam String name) {
-        return taskService.getTasksByName(name);
-    }
 
-    @PutMapping("/{id}/status/{status}")
+    
+     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public TaskResponse updateTask(@PathVariable Long id, @Valid @RequestBody TaskRequest taskRequest) {
+        return taskService.updateTask(id, taskRequest);
+    }
+    
+
+    @PutMapping("/{id}/status/{status}")
+     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public TaskResponse updateTaskStatus(@PathVariable Long id, @PathVariable Status status) {
         return taskService.updateTaskStatus(id, status);
     }
