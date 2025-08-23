@@ -69,22 +69,6 @@ public class TaskServiceImpl implements TaskService {
     }
     
     @Override
-    public List<TaskResponse> getTasksByStatus(Status status) {
-        return taskRepository.findByStatus(status)
-                .stream()
-                .map(taskMapper::taskToTaskResponse)
-                .collect(Collectors.toList());
-    }
-    
-    @Override
-    public List<TaskResponse> getTasksByName(String name) {
-        return taskRepository.findByNameContainingIgnoreCase(name)
-                .stream()
-                .map(taskMapper::taskToTaskResponse)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public TaskResponse updateTaskStatus(Long id, Status status) {
         Task existingTask = taskRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Tarea no encontrada con ID: " + id));

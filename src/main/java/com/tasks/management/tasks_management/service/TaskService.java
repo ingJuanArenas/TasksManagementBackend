@@ -17,10 +17,5 @@ public interface TaskService {
     TaskResponse updateTask(Long id, TaskRequest taskRequest);
     
     void deleteTask(Long id);
-    
-    List<TaskResponse> getTasksByStatus(Status status);
-    
-    List<TaskResponse> getTasksByName(String name);
-
     TaskResponse updateTaskStatus(Long id, Status status);
 } 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,12 +46,6 @@ public class TaskController {
         return taskService.getTaskById(id);
     }
 
-    @GetMapping("/status/{status}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
-    @ResponseStatus(HttpStatus.OK)
-    public List<TaskResponse> getTasksByStatus(@PathVariable Status status) {
-        return taskService.getTasksByStatus(status);
-    }
     
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
