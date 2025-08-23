@@ -19,6 +19,7 @@ Authorization: Basic YWRtaW46YWRtaW5wYXNz
 ### ========================================
 POST http://localhost:8080/api/tasks
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5wYXNz
 
 {
     "name": "Implementar autenticación",
@@ -31,6 +32,7 @@ Content-Type: application/json
 ### ========================================
 POST http://localhost:8080/api/tasks
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5wYXNz
 
 {
     "name": "Corregir bugs críticos",
@@ -117,9 +119,10 @@ DELETE http://localhost:8080/api/tasks/999
 ### ========================================
 POST http://localhost:8080/api/tasks
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5wYXNz
 
 {
-    "name": "",
+    "name": "Limpiar Codigo",
     "description": "Descripción válida",
     "deadline": "2024-12-31"
 }
@@ -129,10 +132,11 @@ Content-Type: application/json
 ### ========================================
 POST http://localhost:8080/api/tasks
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5wYXNz
 
 {
-    "name": "Tarea válida",
-    "description": "",
+    "name": "EJEMPLO",
+    "description": "Un ejemplo",
     "deadline": "2024-12-31"
 }
 
@@ -152,11 +156,12 @@ Content-Type: application/json
 ### ========================================
 POST http://localhost:8080/api/tasks
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5wYXNz
 
 {
     "name": "Tarea válida",
     "description": "Descripción válida",
-    "deadline": "fecha-invalida"
+    "deadline": "2025-09-12"
 }
 
 ### ========================================
@@ -164,9 +169,10 @@ Content-Type: application/json
 ### ========================================
 POST http://localhost:8080/api/tasks
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5wYXNz
 
 {
-    "name": "Tarea válida"
+    "name": "Tarea válida",
     "description": "Descripción válida",
     "deadline": "2024-12-31"
 }
@@ -174,7 +180,7 @@ Content-Type: application/json
 ### ========================================
 ### 21. ACTUALIZAR ESTADO A IN_COURSE (PUT)
 ### ========================================
-PUT http://localhost:8080/api/tasks/1/status/IN_COURSE
+PUT http://localhost:8080/api/tasks/19/status/IN_COURSE
 
 ### ========================================
 ### 22. ACTUALIZAR ESTADO A COMPLETED (PUT)

@@ -1,3 +1,4 @@
+
 ### Crear usuario (ejemplo)
 POST http://localhost:8080/api/users/create?username=testuser&password=testpass&role=ROLE_USER
 Content-Type: application/json
@@ -6,10 +7,24 @@ Content-Type: application/json
 POST http://localhost:8080/api/users/create?username=admin&password=adminpass&role=ROLE_ADMIN
 Content-Type: application/json
 
-### Probar login con usuario creado (acceder a endpoint protegido)
-GET http://localhost:8080/api/tasks
+### Probar login con usuario creado (acceder a endpoint protegido)GET http://localhost:8080/api/tasks
 Authorization: Basic dGVzdHVzZXI6dGVzdHBhc3M=
 
 ### Probar login con admin (acceder a endpoint protegido)
 GET http://localhost:8080/api/tasks
 Authorization: Basic YWRtaW46YWRtaW5wYXNz
+###PUT
+
+PUT http://localhost:8080/api/tasks/22/status/IN_COURSE
+Authorization: Basic dGVzdHVzZXI6dGVzdHBhc3M=
+###
+PUT http://localhost:8080/api/tasks/19
+Content-Type: application/json
+Authorization: Basic dGVzdHVzZXI6dGVzdHBhc3M=
+
+{
+    "name": "Desarrollar API REST - Actualizado",
+    "description": "Crear una API REST completa con Spring Boot para gestión de tareas - Versión mejorada",
+    "deadline": "2024-12-15",
+    "status": "IN_COURSE"
+}
